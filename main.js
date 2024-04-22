@@ -18,7 +18,27 @@ function formatTimeComponent(component) {
 }
 
 setInterval(displayCurrentTime, 1000);
+// time container-page
+function CurTime() {
+    var currentTime = new Date();
 
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+    hours = formatTimeComponent(hours);
+    minutes = formatTimeComponent(minutes);
+
+    var timeString = hours + ":" + minutes;
+
+    document.getElementById("cur-time").textContent = timeString;
+}
+
+function formatTimeComponent(component) {
+    return component < 10 ? "0" + component : component;
+}
+
+setInterval(CurTime, 1000);
 // time center
 const currentTimeElement = document.getElementById("current-time-center");
 
@@ -37,7 +57,7 @@ setInterval(updateTime, 1000);
 // container-time-file
 var time = document.getElementById("curren-time");
 
-function updateCurrentTime() {
+function updateCurrntTime() {
     var currentTime = new Date();
     var currentHour = currentTime.getHours();
     var currentMinute = currentTime.getMinutes();
@@ -46,7 +66,23 @@ function updateCurrentTime() {
     time.textContent = formattedTime;
 }
 
-updateCurrentTime();
+updateCurrntTime();
+setInterval(updateCurrentTime, 1000);
+// time container-facebook
+function updateCurrentTime() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
+
+    var timeElement = document.getElementById("current-time-facebook");
+    timeElement.textContent = hours + ":" + minutes;
+}
+
 setInterval(updateCurrentTime, 1000);
 // date
 const dateElement = document.querySelector('.date');
@@ -112,7 +148,7 @@ function changeBgColor(color, number) {
 
 parent.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
-        changeBgColor('white', clicks);
+        changeBgColor('#fff', clicks);
         clicks += 1;
         guess += e.target.className;
         console.log(guess);
@@ -204,20 +240,16 @@ power.addEventListener('click', function (event) {
 const draggable = document.querySelector('.draggable');
 const container = document.querySelector('.container-assistouch');
 
-let currentX;
-let currentY;
 let initialX;
 let initialY;
-let xOffset = 0;
-let yOffset = 0;
 let isDragging = false;
 
 container.addEventListener('mousedown', dragStart);
 
 function dragStart(e) {
     if (e.target === draggable) {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
+        initialX = e.clientX - draggable.getBoundingClientRect().left;
+        initialY = e.clientY - draggable.getBoundingClientRect().top;
 
         isDragging = true;
 
@@ -230,13 +262,17 @@ function dragMove(e) {
     if (isDragging) {
         e.preventDefault();
 
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
+        const containerRect = container.getBoundingClientRect();
+        const maxX = containerRect.width - draggable.offsetWidth;
+        const maxY = containerRect.height - draggable.offsetHeight;
 
-        xOffset = currentX;
-        yOffset = currentY;
+        const currentX = e.clientX - containerRect.left - initialX;
+        const currentY = e.clientY - containerRect.top - initialY;
 
-        setTranslate(currentX, currentY, draggable);
+        const clampedX = Math.max(0, Math.min(currentX, maxX));
+        const clampedY = Math.max(0, Math.min(currentY, maxY));
+
+        draggable.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
     }
 }
 
@@ -246,20 +282,107 @@ function dragEnd() {
     document.removeEventListener('mouseup', dragEnd);
 }
 
-function setTranslate(xPos, yPos, el) {
-    const containerRect = container.getBoundingClientRect();
-    const elementRect = el.getBoundingClientRect();
 
-    const maxX = containerRect.width - elementRect.width;
-    const maxY = containerRect.height - elementRect.height;
+//
+const createnewsContainer = document.querySelector('.createnews');
+const contentCreatenews = document.querySelector('.content-createnews');
 
-    const clampedX = Math.max(0, Math.min(xPos, maxX));
-    const clampedY = Math.max(0, Math.min(yPos, maxY));
+let isDraggin = false;
+let curreX;
+let initiaX;
+let xOffse = 0;
 
-    el.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+function dragStar(e) {
+    initiaX = e.clientX || e.touches[0].clientX;
+    isDraggin = true;
 }
 
+function dragEn() {
+    isDraggin = false;
+}
 
+function dragMov(e) {
+    if (isDraggin) {
+        e.preventDefault();
 
+        curreX = e.clientX || e.touches[0].clientX;
+        xOffset = curreX - initiaX;
 
+        createnewsContainer.scrollLeft -= xOffset;
+        initiaX = curreX;
+    }
+}
+contentCreatenews.addEventListener('mousedown', dragStar);
+contentCreatenews.addEventListener('touchstart', dragStar);
+
+contentCreatenews.addEventListener('mouseup', dragEn);
+contentCreatenews.addEventListener('mouseleave', dragEn);
+contentCreatenews.addEventListener('mousemove', dragMov);
+contentCreatenews.addEventListener('touchend', dragEn);
+contentCreatenews.addEventListener('touchmove', dragMov);
+// block container-facebook
+function facebook() {
+    const containerFacebook = document.querySelector('.container-facebook');
+    containerFacebook.style.display = 'block';
+    containerFacebook.scrollIntoView({ behavior: 'smooth' });
+}
+// block container-page
+function blockContainerPage() {
+    var containerPage = document.querySelector(".container-page");
+    containerPage.style.display = "block";
+}
+// show like
+const likeElement = document.querySelector('.like');
+const additionalIcons = document.querySelector('.additional-icons');
+
+likeElement.addEventListener('mouseenter', () => {
+    additionalIcons.style.display = 'flex';
+});
+
+likeElement.addEventListener('mouseleave', () => {
+    additionalIcons.style.display = 'none';
+});
+
+function replaceIcon(iconName) {
+    const mainIcon = document.querySelector('.like ion-icon:first-child');
+    mainIcon.setAttribute('name', iconName);
+
+    const additionalIcons = document.querySelectorAll('.additional-icons ion-icon');
+    additionalIcons.forEach(icon => {
+        if (icon.getAttribute('name') === iconName) {
+            icon.classList.add('selected');
+        } else {
+            icon.classList.remove('selected');
+        }
+    });
+}
+
+// upload image
+document.querySelector('.upload').addEventListener('click', function () {
+    document.getElementById('imageInput').click();
+});
+
+// Function to handle image upload
+document.getElementById('imageInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    // Load image to display
+    reader.onload = function () {
+        const imageUrl = reader.result;
+        const imgCreateNew = document.querySelector('.background-createnews .img-createnew img');
+        const userCreateNew = document.querySelector('.background-createnews .userCreatenew img');
+        const userName = document.querySelector('.background-createnews:not([style*="display: none;"]) p');
+        imgCreateNew.src = imageUrl;
+        userCreateNew.src = "img/user.jpg";
+
+        // Hiển thị phần tử .background-createnews nếu ẩn
+        const backgrounds = document.querySelectorAll('.background-createnews');
+        backgrounds.forEach(function (background) {
+            background.style.display = 'block';
+        });
+    }
+
+    reader.readAsDataURL(file);
+});
 

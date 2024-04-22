@@ -126,12 +126,12 @@ const buttons = document.querySelectorAll('button');
 const span = document.getElementsByTagName('span');
 const spanContainer = document.querySelector('.container-input');
 const parent = document.querySelector('.container-enter-number');
-const cancel = document.querySelector('.cancel');
 const screen = document.querySelector('.container-password');
 const subText = document.querySelectorAll('.letters');
 const zero = document.querySelector('.zero');
 const containerFile = document.querySelector('.container-file');
 const result = document.querySelector('.result');
+const clearButton = document.querySelector('.cancel-01');
 const password = '190603';
 let clicks = 0;
 let guess = '';
@@ -186,6 +186,14 @@ parent.addEventListener('click', (e) => {
         guess = '';
         clicks = 0;
     }
+    clearButton.addEventListener('click', function () {
+        if (clicks > 0) {
+            changeBgColor('transparent', clicks - 1);
+            guess = guess.slice(0, -1);
+            clicks--;
+            console.log(guess);
+        }
+    });
 });
 
 // block container-password
@@ -281,6 +289,8 @@ function dragEnd() {
     document.removeEventListener('mousemove', dragMove);
     document.removeEventListener('mouseup', dragEnd);
 }
+
+// clear
 
 
 //

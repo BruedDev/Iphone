@@ -47,7 +47,7 @@ a {
     inset: 8px;
     background-color: antiquewhite;
     border-radius: 42px;
-    background: url('https://khoinguonsangtao.vn/wp-content/uploads/2022/10/hinh-gif-buon-tren-ban-cong.gif');
+    background: url('https://www.duchuymobile.com/images/companies/1/1-tin-moi/2022/thang-6/19-6/1-cach-tai-hinh-nen-ios-16.jpeg');
     object-fit: cover;
     object-position: center;
 }
@@ -559,7 +559,7 @@ a {
     inset: 8px;
     background-color: antiquewhite;
     border-radius: 42px;
-    background: url('https://khoinguonsangtao.vn/wp-content/uploads/2022/10/hinh-gif-buon-tren-ban-cong.gif');
+    background: url('https://www.duchuymobile.com/images/companies/1/1-tin-moi/2022/thang-6/19-6/1-cach-tai-hinh-nen-ios-16.jpeg');
     object-fit: cover;
     object-position: center;
 }
@@ -746,7 +746,7 @@ a {
 
 /* container-facebook */
 .container-facebook {
-    /* display: none; */
+    display: none;
     z-index: -1;
     content: '';
     position: absolute;

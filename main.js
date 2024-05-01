@@ -3,7 +3,7 @@ function displayCurrentTime() {
 
     var hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
+    // var seconds = currentTime.getSeconds();
 
     hours = formatTimeComponent(hours);
     minutes = formatTimeComponent(minutes);
@@ -45,15 +45,15 @@ const currentTimeElement = document.getElementById("current-time-center");
 function updateTime() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
-    const currentMinute = currentDate.getMinutes();
+    const currentMinute = currentDate.getMinutes().toString().padStart(2, '0');
     const currentSecond = currentDate.getSeconds();
 
-    const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
+    const formattedTime = `${currentHour}:${currentMinute}`;
     currentTimeElement.textContent = formattedTime;
-
 }
 updateTime();
 setInterval(updateTime, 1000);
+
 // container-time-file
 var time = document.getElementById("curren-time");
 
@@ -193,6 +193,7 @@ parent.addEventListener('click', (e) => {
             clicks--;
             console.log(guess);
         }
+        result.style.display = 'none';
     });
 });
 
@@ -395,4 +396,3 @@ document.getElementById('imageInput').addEventListener('change', function (event
 
     reader.readAsDataURL(file);
 });
-

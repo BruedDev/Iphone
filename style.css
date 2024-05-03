@@ -280,6 +280,14 @@ a {
     text-transform: capitalize;
 }
 
+.lock {
+    position: absolute;
+    top: -130%;
+    font-size: 40px;
+    color: #fff;
+    transform: translateY(-100%);
+}
+
 .overlay {
     position: fixed;
     top: 50%;
@@ -511,7 +519,7 @@ a {
     right: 0;
     bottom: 445px;
     font-size: 13px;
-    display: none;
+    /* display: none; */
     animation: slideIn 0.5s ease-in-out;
     z-index: 999;
 }

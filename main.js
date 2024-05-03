@@ -132,17 +132,22 @@ const zero = document.querySelector('.zero');
 const containerFile = document.querySelector('.container-file');
 const result = document.querySelector('.result');
 const clearButton = document.querySelector('.cancel-01');
+var lockIcon = document.querySelector('ion-icon[name="lock-closed-outline"]');
 const password = '190603';
 let clicks = 0;
 let guess = '';
 
+clearButton.addEventListener('click', function () {
+    if (clicks > 0) {
+        changeBgColor('transparent', clicks - 1);
+        guess = guess.slice(0, -1);
+        clicks--;
+        console.log(guess);
+    }
+    result.textContent = '';
+});
 
 function changeBgColor(color, number) {
-    span[number].style.backgroundColor = color;
-    span[number].style.backgroundColor = color;
-    span[number].style.backgroundColor = color;
-    span[number].style.backgroundColor = color;
-    span[number].style.backgroundColor = color;
     span[number].style.backgroundColor = color;
 }
 
@@ -173,28 +178,35 @@ parent.addEventListener('click', (e) => {
 
 
     if (guess === password) {
-        containerFile.style.display = 'block';
-        screen.style.display = 'none';
+        lockIcon.setAttribute('name', 'lock-open-outline');
+        result.textContent = 'Mở khoá thành công';
+        setTimeout(function () {
+            containerFile.style.display = 'block';
+            screen.style.display = 'none';
+        }, 700);
     } else if (clicks === 6) {
-        result.style.display = 'block';
-        changeBgColor('transparent', 0);
-        changeBgColor('transparent', 1);
-        changeBgColor('transparent', 2);
-        changeBgColor('transparent', 3);
-        changeBgColor('transparent', 4);
-        changeBgColor('transparent', 5);
-        guess = '';
-        clicks = 0;
+        lockIcon.setAttribute('name', 'lock-closed-outline');
+        setTimeout(function () {
+            if (guess === password) {
+                result.textContent = 'Mở khoá thành công';
+                setTimeout(function () {
+                    containerFile.style.display = 'block';
+                    screen.style.display = 'none';
+                }, 700);
+            } else {
+                result.textContent = 'Password: 190603';
+            }
+
+            changeBgColor('transparent', 0);
+            changeBgColor('transparent', 1);
+            changeBgColor('transparent', 2);
+            changeBgColor('transparent', 3);
+            changeBgColor('transparent', 4);
+            changeBgColor('transparent', 5);
+            guess = '';
+            clicks = 0;
+        }, 200);
     }
-    clearButton.addEventListener('click', function () {
-        if (clicks > 0) {
-            changeBgColor('transparent', clicks - 1);
-            guess = guess.slice(0, -1);
-            clicks--;
-            console.log(guess);
-        }
-        result.style.display = 'none';
-    });
 });
 
 // block container-password

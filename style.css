@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Roboto", sans-serif;
-    background-color: #121212;
+    background-color: #000010;
     /* background: #000018; */
 }
 
@@ -419,7 +419,7 @@ a {
     width: 13px;
     height: 13px;
     border: 1px solid #fff;
-    background: #222;
+    background: transparent;
     outline: none;
     font-size: 20px;
     text-align: center;

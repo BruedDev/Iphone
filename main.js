@@ -138,12 +138,11 @@ let clicks = 0;
 let guess = '';
 
 clearButton.addEventListener('click', function () {
-    if (clicks > 0) {
-        changeBgColor('transparent', clicks - 1);
-        guess = guess.slice(0, -1);
-        clicks--;
-        console.log(guess);
+    for (let i = 0; i < clicks; i++) {
+        changeBgColor('transparent', i);
     }
+    guess = '';
+    clicks = 0;
     result.textContent = '';
 });
 

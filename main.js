@@ -61,13 +61,14 @@ function updateCurrntTime() {
     var currentTime = new Date();
     var currentHour = currentTime.getHours();
     var currentMinute = currentTime.getMinutes();
+    var formattedMinute = String(currentMinute).padStart(2, '0');
 
-    var formattedTime = currentHour + ":" + currentMinute;
+    var formattedTime = currentHour + ":" + formattedMinute;
     time.textContent = formattedTime;
 }
 
 updateCurrntTime();
-setInterval(updateCurrentTime, 1000);
+setInterval(updateCurrntTime, 1000);
 // time container-facebook
 function updateCurrentTime() {
     var currentTime = new Date();
@@ -260,7 +261,6 @@ power.addEventListener('click', function (event) {
 const draggables = document.querySelectorAll('.draggable');
 const assistouch = document.querySelectorAll('.container-assistouch');
 const assistouchMenus = document.querySelectorAll('.assistouch-menu');
-const conTentAssistouchMenus = document.querySelectorAll('.content-assitouch-menu');
 
 let initialX;
 let initialY;
@@ -273,8 +273,6 @@ assistouchMenus.forEach(menu => {
     menu.style.display = 'none';
 });
 
-
-
 assistouch.forEach((container, index) => {
     container.addEventListener('mousedown', function (e) {
         isClicked = true;
@@ -283,7 +281,7 @@ assistouch.forEach((container, index) => {
     });
 
     container.addEventListener('click', function (e) {
-        if (isClicked && !isDragging) {
+        if (isClicked && !isDragging && draggables[index].contains(e.target)) {
             assistouchMenus[index].style.display = 'block';
             assistouchMenus[index].style.animation = 'fadeIn .35s ease-in';
             draggables[index].style.display = 'none'; // Ẩn draggable tương ứng
@@ -307,7 +305,6 @@ document.addEventListener('click', function (e) {
         }
     });
 });
-
 
 document.addEventListener('mousedown', function (e) {
     assistouchMenus.forEach(menu => {

@@ -596,7 +596,7 @@ a {
 
 /* container-file */
 .container-file {
-    /* display: none; */
+    display: none;
     padding: 5px 10px;
     z-index: -1;
     content: '';

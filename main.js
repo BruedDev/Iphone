@@ -257,22 +257,83 @@ power.addEventListener('click', function (event) {
     }
 });
 // assistouch
-const draggable = document.querySelector('.draggable');
-const container = document.querySelector('.container-assistouch');
+const draggables = document.querySelectorAll('.draggable');
+const assistouch = document.querySelectorAll('.container-assistouch');
+const assistouchMenus = document.querySelectorAll('.assistouch-menu');
+const conTentAssistouchMenus = document.querySelectorAll('.content-assitouch-menu');
 
 let initialX;
 let initialY;
 let isDragging = false;
+let isClicked = false;
+let currentDraggable;
+let isContainerClicked = false;
 
-container.addEventListener('mousedown', dragStart);
+assistouchMenus.forEach(menu => {
+    menu.style.display = 'none';
+});
 
-function dragStart(e) {
+
+
+assistouch.forEach((container, index) => {
+    container.addEventListener('mousedown', function (e) {
+        isClicked = true;
+        isContainerClicked = true;
+        dragStart(e, draggables[index]);
+    });
+
+    container.addEventListener('click', function (e) {
+        if (isClicked && !isDragging) {
+            assistouchMenus[index].style.display = 'block';
+            assistouchMenus[index].style.animation = 'fadeIn .35s ease-in';
+            draggables[index].style.display = 'none'; // Ẩn draggable tương ứng
+            e.stopPropagation();
+        }
+    });
+});
+
+document.addEventListener('click', function (e) {
+    assistouchMenus.forEach((menu, index) => {
+        const rect = menu.getBoundingClientRect();
+        if (
+            e.clientX < rect.left ||
+            e.clientX > rect.left + rect.width ||
+            e.clientY < rect.top ||
+            e.clientY > rect.top + rect.height
+        ) {
+            assistouchMenus[index].style.display = 'none';
+            draggables[index].style.display = 'block';
+            draggables[index].style.opacity = '1';
+        }
+    });
+});
+
+
+document.addEventListener('mousedown', function (e) {
+    assistouchMenus.forEach(menu => {
+        const rect = menu.getBoundingClientRect();
+        const isInHorizontalBounds = e.clientX >= rect.left && e.clientX <= rect.right;
+        const isInVerticalBounds = e.clientY >= rect.top && e.clientY <= rect.bottom;
+        const isInsideMenuBounds = isInHorizontalBounds && isInVerticalBounds;
+
+        if (!isContainerClicked && !isInsideMenuBounds) {
+            menu.style.display = 'none';
+        }
+    });
+    isContainerClicked = false;
+});
+
+function dragStart(e, draggable) {
     if (e.target === draggable) {
         initialX = e.clientX - draggable.getBoundingClientRect().left;
         initialY = e.clientY - draggable.getBoundingClientRect().top;
 
         isDragging = true;
-
+        currentDraggable = draggable;
+        currentDraggable.style.opacity = '1';
+        assistouchMenus.forEach(menu => {
+            menu.style.display = 'none';
+        });
         document.addEventListener('mousemove', dragMove);
         document.addEventListener('mouseup', dragEnd);
     }
@@ -280,11 +341,12 @@ function dragStart(e) {
 
 function dragMove(e) {
     if (isDragging) {
+        isClicked = false;
         e.preventDefault();
 
-        const containerRect = container.getBoundingClientRect();
-        const maxX = containerRect.width - draggable.offsetWidth;
-        const maxY = containerRect.height - draggable.offsetHeight;
+        const containerRect = currentDraggable.parentElement.getBoundingClientRect();
+        const maxX = containerRect.width - currentDraggable.offsetWidth;
+        const maxY = containerRect.height * 0.85 - currentDraggable.offsetHeight;
 
         const currentX = e.clientX - containerRect.left - initialX;
         const currentY = e.clientY - containerRect.top - initialY;
@@ -292,7 +354,7 @@ function dragMove(e) {
         const clampedX = Math.max(0, Math.min(currentX, maxX));
         const clampedY = Math.max(0, Math.min(currentY, maxY));
 
-        draggable.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+        currentDraggable.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
     }
 }
 
@@ -300,6 +362,22 @@ function dragEnd() {
     isDragging = false;
     document.removeEventListener('mousemove', dragMove);
     document.removeEventListener('mouseup', dragEnd);
+    setTimeout(() => {
+        currentDraggable.style.transition = 'opacity 1s';
+        currentDraggable.style.opacity = '0.68';
+    }, 2000);
+}
+
+function toggleAssistouchMenu() {
+    assistouchMenus.forEach(menu => {
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'block';
+            menu.style.width = '250px';
+            menu.style.height = '250px';
+        }
+    });
 }
 
 // clear
@@ -343,16 +421,30 @@ contentCreatenews.addEventListener('mousemove', dragMov);
 contentCreatenews.addEventListener('touchend', dragEn);
 contentCreatenews.addEventListener('touchmove', dragMov);
 // block container-facebook
-function facebook() {
-    const containerFacebook = document.querySelector('.container-facebook');
-    containerFacebook.style.display = 'block';
-    containerFacebook.scrollIntoView({ behavior: 'smooth' });
-}
+const containerFacebook = document.querySelector('.container-facebook');
+const assistouchBL = document.querySelector('.container-assistouch');
+const iconFacebook = document.getElementById('icon-facebook');
+iconFacebook.addEventListener("click", function (facebook) {
+    containerFacebook.classList.add('show');
+    assistouchBL.style.display = 'none';
+})
 // block container-page
-function blockContainerPage() {
-    var containerPage = document.querySelector(".container-page");
-    containerPage.style.display = "block";
-}
+var containerPage = document.querySelector(".container-page");
+const containerFaceboo = document.querySelector('.container-facebook');
+var personal = document.getElementById("personal");
+var back = document.querySelector(".back");
+personal.addEventListener("click", function () {
+    containerPage.classList.add('show');
+});
+personal.addEventListener("click", function () {
+    containerFaceboo.classList.remove('show');
+});
+back.addEventListener("click", function () {
+    containerPage.classList.remove('show');
+});
+back.addEventListener("click", function () {
+    containerFaceboo.classList.add('show');
+});
 // show like
 const likeElement = document.querySelector('.like');
 const additionalIcons = document.querySelector('.additional-icons');
@@ -389,7 +481,6 @@ document.getElementById('imageInput').addEventListener('change', function (event
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    // Load image to display
     reader.onload = function () {
         const imageUrl = reader.result;
         const imgCreateNew = document.querySelector('.background-createnews .img-createnew img');
@@ -398,7 +489,6 @@ document.getElementById('imageInput').addEventListener('change', function (event
         imgCreateNew.src = imageUrl;
         userCreateNew.src = "img/user.jpg";
 
-        // Hiển thị phần tử .background-createnews nếu ẩn
         const backgrounds = document.querySelectorAll('.background-createnews');
         backgrounds.forEach(function (background) {
             background.style.display = 'block';
@@ -407,3 +497,4 @@ document.getElementById('imageInput').addEventListener('change', function (event
 
     reader.readAsDataURL(file);
 });
+

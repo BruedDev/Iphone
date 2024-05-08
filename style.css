@@ -18,6 +18,10 @@ body {
     /* background: #000018; */
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 canvas {
     display: block;
 }
@@ -641,7 +645,7 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #222;
+    background-color: #313a3c;
     width: 250px;
     height: 250px;
     border-radius: 20px;
@@ -662,7 +666,6 @@ a {
         opacity: 1;
     }
 }
-
 
 .assistouch-menu.show {
     display: block;
@@ -1037,12 +1040,15 @@ a {
     color: #fff;
     flex-direction: column;
     margin: auto;
+    cursor: pointer;
 }
 
 .title-facebook-nav {
     font-size: 8px;
     margin-top: 5px;
 }
+
+
 
 .icon-nav span {
     display: flex;
@@ -1842,4 +1848,14 @@ span {
 
 .navBar .icon-nav:nth-child(3) {
     font-size: 25px;
+}
+
+.instruct {
+    position: absolute;
+    width: 100%;
+    left: 80%;
+}
+
+.instruct video {
+    width: 300px;
 }

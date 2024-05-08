@@ -245,7 +245,6 @@ power.addEventListener('click', function (event) {
         setTimeout(function () {
             containerOffphone.style.display = 'none';
             horizontalPassword.style.display = 'block';
-
         }, 300);
 
         isOffphoneDisplayed = false;
@@ -284,7 +283,7 @@ assistouch.forEach((container, index) => {
         if (isClicked && !isDragging && draggables[index].contains(e.target)) {
             assistouchMenus[index].style.display = 'block';
             assistouchMenus[index].style.animation = 'fadeIn .35s ease-in';
-            draggables[index].style.display = 'none'; // Ẩn draggable tương ứng
+            draggables[index].style.display = 'none';
             e.stopPropagation();
         }
     });
@@ -324,7 +323,6 @@ function dragStart(e, draggable) {
     if (e.target === draggable) {
         initialX = e.clientX - draggable.getBoundingClientRect().left;
         initialY = e.clientY - draggable.getBoundingClientRect().top;
-
         isDragging = true;
         currentDraggable = draggable;
         currentDraggable.style.opacity = '1';
@@ -355,10 +353,22 @@ function dragMove(e) {
     }
 }
 
-function dragEnd() {
+function dragEnd(e) {
     isDragging = false;
     document.removeEventListener('mousemove', dragMove);
     document.removeEventListener('mouseup', dragEnd);
+
+    const containerRect = currentDraggable.parentElement.getBoundingClientRect();
+    const draggableRect = currentDraggable.getBoundingClientRect();
+    const middlePoint = containerRect.left + containerRect.width / 2;
+
+    if (draggableRect.left < middlePoint) {
+        currentDraggable.style.transform = `translate(0px, ${draggableRect.top - containerRect.top}px)`;
+    } else {
+        const rightPosition = containerRect.width - currentDraggable.offsetWidth;
+        currentDraggable.style.transform = `translate(${rightPosition}px, ${draggableRect.top - containerRect.top}px)`;
+    }
+
     setTimeout(() => {
         currentDraggable.style.transition = 'opacity 1s';
         currentDraggable.style.opacity = '0.68';
@@ -381,42 +391,7 @@ function toggleAssistouchMenu() {
 
 
 //
-const createnewsContainer = document.querySelector('.createnews');
-const contentCreatenews = document.querySelector('.content-createnews');
 
-let isDraggin = false;
-let curreX;
-let initiaX;
-let xOffse = 0;
-
-function dragStar(e) {
-    initiaX = e.clientX || e.touches[0].clientX;
-    isDraggin = true;
-}
-
-function dragEn() {
-    isDraggin = false;
-}
-
-function dragMov(e) {
-    if (isDraggin) {
-        e.preventDefault();
-
-        curreX = e.clientX || e.touches[0].clientX;
-        xOffset = curreX - initiaX;
-
-        createnewsContainer.scrollLeft -= xOffset;
-        initiaX = curreX;
-    }
-}
-contentCreatenews.addEventListener('mousedown', dragStar);
-contentCreatenews.addEventListener('touchstart', dragStar);
-
-contentCreatenews.addEventListener('mouseup', dragEn);
-contentCreatenews.addEventListener('mouseleave', dragEn);
-contentCreatenews.addEventListener('mousemove', dragMov);
-contentCreatenews.addEventListener('touchend', dragEn);
-contentCreatenews.addEventListener('touchmove', dragMov);
 // block container-facebook
 const containerFacebook = document.querySelector('.container-facebook');
 const assistouchBL = document.querySelector('.container-assistouch');

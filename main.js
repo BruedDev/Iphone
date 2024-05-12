@@ -448,7 +448,6 @@ document.querySelector('.upload').addEventListener('click', function () {
     document.getElementById('imageInput').click();
 });
 
-// Function to handle image upload
 document.getElementById('imageInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -469,4 +468,32 @@ document.getElementById('imageInput').addEventListener('change', function (event
 
     reader.readAsDataURL(file);
 });
+
+const createnews = document.querySelector('.createnews');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+createnews.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - createnews.offsetLeft;
+    scrollLeft = createnews.scrollLeft;
+});
+
+createnews.addEventListener('mouseleave', () => {
+    isDown = false;
+});
+
+createnews.addEventListener('mouseup', () => {
+    isDown = false;
+});
+
+createnews.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - createnews.offsetLeft;
+    const walk = (x - startX) * 1;
+    createnews.scrollLeft = scrollLeft - walk;
+});
+
 

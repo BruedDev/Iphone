@@ -23,21 +23,22 @@
 
     <div class="container">
         <div class="container-phone">
-            <div class="content-phone">
+            <div class="content-phone" id="content-phone">
                 <div class="header">
                     <div class="time">
-                        <p id="current-time"></p>
-                        <i class="fa-solid fa-bell-slash time-icon"></i>
+                        <p class="current-time"></p>
+                        <!-- <i class="fa-solid fa-bell-slash time-icon"></i> -->
                     </div>
                     <div class="container-camera">
                         <div class="camera">
                             <div class="camera-one"></div>
-                            <!-- <div class="camera-two"></div> -->
                         </div>
                     </div>
                     <div class="icon-header">
                         <i style="font-size: 11px; color: #fff;" class="fa-solid fa-signal"></i>
                         <i style="font-size: 11px; color: #fff;" class="fa-solid fa-wifi" class="bx"></i>
+                        <a class="text-pin">100%</a>
+                        <ion-icon class="ellipsis" name="ellipsis-horizontal-outline"></ion-icon>
                         <ion-icon style="color: #fff;" class="bx" name="battery-full-outline"></ion-icon>
                     </div>
                 </div>
@@ -102,16 +103,11 @@
                     </div>
                 </div>
             </div>
-            <!-- off phone -->
-            <div class="container-offphone">
-                <div class="icon-apple">
-                    <ion-icon name="logo-apple"></ion-icon>
-                </div>
-            </div>
-            <div class="container-file">
+            <!-- container-urgent -->
+            <div class="container-urgent">
                 <div class="header">
                     <div class="time">
-                        <div id="curren-time"></div>
+                        <div class="current-time"></div>
                         <!-- <ion-icon style="font-size: 15px; color: #fff;" name="airplane-outline"></ion-icon> -->
                     </div>
                     <div class="container-camera">
@@ -121,9 +117,40 @@
                         </div>
                     </div>
                     <div class="icon-header">
-                        <ion-icon style="font-size: 14px; color: #fff;" name="cellular-outline"></ion-icon>
-                        <ion-icon style="font-size: 16px;" class="bx" name="wifi-outline"></ion-icon>
-                        <ion-icon class="bx" name="battery-full-outline"></ion-icon>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-signal"></i>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-wifi" class="bx"></i>
+                        <a class="text-pin">100%</a>
+                        <ion-icon class="ellipsis" name="ellipsis-horizontal-outline"></ion-icon>
+                        <ion-icon style="color: #fff;" class="bx" name="battery-full-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="urgent-list">
+                    1
+                </div>
+            </div>
+            <!-- off phone -->
+            <div class="container-offphone">
+                <div class="icon-apple">
+                    <ion-icon name="logo-apple"></ion-icon>
+                </div>
+            </div>
+            <div class="container-file">
+                <div class="header">
+                    <div class="time">
+                        <div class="current-time"></div>
+                    </div>
+                    <div class="container-camera">
+                        <div class="camera">
+                            <div class="camera-one"></div>
+                            <!-- <div class="camera-two"></div> -->
+                        </div>
+                    </div>
+                    <div class="icon-header">
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-signal"></i>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-wifi" class="bx"></i>
+                        <a class="text-pin">100%</a>
+                        <ion-icon class="ellipsis" name="ellipsis-horizontal-outline"></ion-icon>
+                        <ion-icon style="color: #fff;" class="bx" name="battery-full-outline"></ion-icon>
                     </div>
                 </div>
                 <div class="container-assistouch">
@@ -173,73 +200,76 @@
                     </div>
                     <div class="swiper">
                         <div class="swiper-wrapper">
-
                             <div class="swiper-slide">
                                 <div class="container-center-file">
-                                    <!-- container-file-bottom -->
                                     <div class="container-file-bottom">
-                                        <div class="profile-user">
-                                            <div class="background-profile">
-                                                <img src="img/user.jpg" alt="">
+                                        <div class="file">
+                                            <div class="background-alo">
+                                                <!-- <img class="nen" src="img/loading.gif" alt=""> -->
                                             </div>
-                                            <div class="background-profile">
-                                                a
+                                            <div class="background-file-img">
+                                                <div class="img-file">
+                                                    <img id="icon-facebook" src="img/facebook-icon.png" alt="">
+                                                    <div class="title-file">
+                                                        <span class="facebook">facebook</span>
+                                                    </div>
+                                                </div>
+                                                <div class="img-file">
+                                                    <img src="img/gmail-icon.jpg" alt="">
+                                                    <div class="title-file">
+                                                        <span>Email</span>
+                                                    </div>
+                                                </div>
+                                                <div class="img-file">
+                                                    <img src="img/music-icon.jpg" alt="">
+                                                    <div class="title-file">
+                                                        <span>Mussic</span>
+                                                    </div>
+                                                </div>
+                                                <div class="img-file">
+                                                    <img src="img/photo-icon.jpg" alt="">
+                                                    <div class="title-file">
+                                                        <span>Photo</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="background-file-img">
+                                                <div class="img-file">
+                                                    <img src="img/facetime-icon.jpg" alt="">
+                                                    <div class="title-file">
+                                                        <span>face time</span>
+                                                    </div>
+                                                </div>
+                                                <div class="img-file">
+                                                    <img src="img/messenger-icon.png" alt="">
+                                                    <div class="title-file">
+                                                        <span>messenger</span>
+                                                    </div>
+                                                </div>
+                                                <div class="img-file">
+                                                    <img src="img/clock-icon.png" alt="">
+                                                    <div class="title-file">
+                                                        <span>Clock</span>
+                                                    </div>
+                                                </div>
+                                                <div class="img-file">
+                                                    <img src="img/camera-icon.png" alt="">
+                                                    <div class="title-file">
+                                                        <span>camera</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="background-alo">
+
                                             </div>
                                         </div>
-                                        <div class="file">
+                                        <div class="background-file-img-02">
                                             <div class="img-file">
                                                 <img src="img/file-icon.png" alt="">
                                                 <div class="title-file">
                                                     <span>File</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/gmail-icon.jpg" alt="">
-                                                <div class="title-file">
-                                                    <span>Email</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/music-icon.jpg" alt="">
-                                                <div class="title-file">
-                                                    <span>Mussic</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/photo-icon.jpg" alt="">
-                                                <div class="title-file">
-                                                    <span>Photo</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/facetime-icon.jpg" alt="">
-                                                <div class="title-file">
-                                                    <span>face time</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/messenger-icon.png" alt="">
-                                                <div class="title-file">
-                                                    <span>messenger</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/clock-icon.png" alt="">
-                                                <div class="title-file">
-                                                    <span>Clock</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img src="img/camera-icon.png" alt="">
-                                                <div class="title-file">
-                                                    <span>camera</span>
-                                                </div>
-                                            </div>
-                                            <div class="img-file">
-                                                <img id="icon-facebook" onclick="facebook()" src="img/facebook-icon.png"
-                                                    alt="">
-                                                <div class="title-file">
-                                                    <span class="facebook">facebook</span>
                                                 </div>
                                             </div>
                                             <div class="img-file">
@@ -254,126 +284,160 @@
                                                     <span>App store</span>
                                                 </div>
                                             </div>
-                                            <div class="img-file">
-                                                <img src="img/seferi-icon.png" alt="">
+                                            <div class="img-file" id="game">
+                                                <img src="img/125543660_2020088464794652_2105580177940976601_n.jpg"
+                                                    alt="">
                                                 <div class="title-file">
-                                                    <span>Camera</span>
+                                                    <span>Game ngáo</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="file-bottom">
-                                            <div class="file-icon-bottom">
-                                                <img src="img/telephont-icon.jpg" alt="">
-                                                <div class="title-icon-bottom"></div>
-                                            </div>
-                                            <div class="file-icon-bottom">
-                                                <img src="img/tin nhan-icon.png" alt="">
-                                                <div class="title-icon-bottom"></div>
-                                            </div>
-                                            <div class="file-icon-bottom">
-                                                <img src="img/seferi-icon.png" alt="">
-                                                <div class="title-icon-bottom"></div>
-                                            </div>
-                                            <div class="file-icon-bottom">
-                                                <img src="img/setting-icon.png" alt="">
-                                                <div class="title-icon-bottom"></div>
-                                            </div>
+                                    </div>
+                                    <div class="file-bottom">
+                                        <div class="file-icon-bottom">
+                                            <img src="img/telephont-icon.jpg" alt="">
+                                            <div class="title-icon-bottom"></div>
+                                        </div>
+                                        <div class="file-icon-bottom">
+                                            <img src="img/tin nhan-icon.png" alt="">
+                                            <div class="title-icon-bottom"></div>
+                                        </div>
+                                        <div class="file-icon-bottom">
+                                            <img src="img/seferi-icon.png" alt="">
+                                            <div class="title-icon-bottom"></div>
+                                        </div>
+                                        <div class="file-icon-bottom">
+                                            <img src="img/setting-icon.png" alt="">
+                                            <div class="title-icon-bottom"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="swiper-slide">
                                 <div class="slider-2">
-                                    <div class="file">
-                                        <div class="img-file">
-                                            <img src="img/file-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>File</span>
+                                    <div class="content-slider-2">
+                                        <div class="azx">
+                                            <div class="search-slider">
+                                                <ion-icon name="search-outline"></ion-icon>
+                                                <input type="text" placeholder="Thư viện ứng dụng"
+                                                    class="search-input-slider">
                                             </div>
                                         </div>
-                                        <div class="img-file">
-                                            <img src="img/gmail-icon.jpg" alt="">
-                                            <div class="title-file">
-                                                <span>Email</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/music-icon.jpg" alt="">
-                                            <div class="title-file">
-                                                <span>Mussic</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/photo-icon.jpg" alt="">
-                                            <div class="title-file">
-                                                <span>Photo</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/facetime-icon.jpg" alt="">
-                                            <div class="title-file">
-                                                <span>face time</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/messenger-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>messenger</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/clock-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>Clock</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/camera-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>camera</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img id="icon-facebook" onclick="facebook()" src="img/facebook-icon.png"
-                                                alt="">
-                                            <div class="title-file">
-                                                <span class="facebook">facebook</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/seferi-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>safari</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/app store-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>App store</span>
-                                            </div>
-                                        </div>
-                                        <div class="img-file">
-                                            <img src="img/seferi-icon.png" alt="">
-                                            <div class="title-file">
-                                                <span>Camera</span>
+                                        <div class="container-item-slider">
+                                            <div class="content-item-slider">
+                                                <div class="container-background-slider">
+                                                    <div class="background-item-slider">
+                                                        <div class="item-slider"><img src="img/facetime-icon.jpg"
+                                                                alt=""></div>
+                                                        <div class="item-slider"><img src="img/app store-icon.png"
+                                                                alt=""></div>
+                                                        <div class="item-slider"><img src="img/mbb.png" alt=""></div>
+                                                        <div class="item-slider"><img src="img/tele.png" alt=""></div>
+                                                    </div>
+                                                    <div class="text-background-item">
+                                                        <span>Gợi ý</span>
+                                                    </div>
+                                                </div>
+                                                <div class="container-background-slider">
+                                                    <div class="background-item-slider">
+                                                        <div class="item-slider"><img src="img/react.jpg" alt=""></div>
+                                                        <div class="item-slider"><img src="img/gmail-icon.jpg" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/clock-icon.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/camera-icon.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-background-item">
+                                                        <span>Đã thêm gần đây</span>
+                                                    </div>
+                                                </div>
+                                                <div class="container-background-slider">
+                                                    <div class="background-item-slider">
+                                                        <div class="item-slider"><img src="img/messenger-icon.png"
+                                                                alt=""></div>
+                                                        <div class="item-slider" id="icon-facebook"><img
+                                                                src="img/facebook-icon.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/tiktok.jpg" alt="">
+                                                        </div>
+                                                        <div class="item-slider grid-slider">
+                                                            <img src="img/tele.png" alt="">
+                                                            <img src="img/insta.jpg" alt="">
+                                                            <img src="img/ome.png" alt="">
+                                                            <img src="img/máy tính.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-background-item">
+                                                        <span>Xã hội</span>
+                                                    </div>
+                                                </div>
+                                                <div class="container-background-slider">
+                                                    <div class="background-item-slider">
+                                                        <div class="item-slider grid-slider">
+                                                            <img src="img/tiktok.jpg" alt="">
+                                                            <img src="img/insta.jpg" alt="">
+                                                            <img src="img/shound.png" alt="">
+                                                            <img src="img/setting-icon.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/tocchien.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/riot.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/lienquan.jfif" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-background-item">
+                                                        <span>Giải trí</span>
+                                                    </div>
+                                                </div>
+                                                <div class="container-background-slider">
+                                                    <div class="background-item-slider">
+                                                        <div class="item-slider"><img src="img/ytb.jpg" alt=""></div>
+                                                        <div class="item-slider"><img src="img/máy tính.jpg" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/clock-icon.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/chrome.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-background-item">
+                                                        <span>Tiện ích</span>
+                                                    </div>
+                                                </div>
+                                                <div class="container-background-slider">
+                                                    <div class="background-item-slider">
+                                                        <div class="item-slider"><img src="img/app store-icon.png"
+                                                                alt=""></div>
+                                                        <div class="item-slider"><img src="img/gmail-icon.jpg" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/clock-icon.png" alt="">
+                                                        </div>
+                                                        <div class="item-slider"><img src="img/camera-icon.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-background-item">
+                                                        <span>Tác vụ</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="swiper-scrollbar"></div> -->
                     </div>
-
+                    <div class="swiper-pagination"></div>
                 </div>
-
             </div>
             <div class="container-facebook">
                 <div class="header header-fb">
                     <div class="time">
-                        <div id="current-time-facebook"></div>
-                        <!-- <ion-icon style="font-size: 15px; color: #fff;" name="airplane-outline"></ion-icon> -->
+                        <div class="back-up-file">
+                            <ion-icon name="return-up-back-outline"></ion-icon>
+                        </div>
+
+                        <div class="current-time"></div>
                     </div>
                     <div class="container-camera">
                         <div class="camera">
@@ -382,9 +446,11 @@
                         </div>
                     </div>
                     <div class="icon-header">
-                        <ion-icon style="font-size: 14px; color: #fff;" name="cellular-outline"></ion-icon>
-                        <ion-icon style="font-size: 16px;" class="bx" name="wifi-outline"></ion-icon>
-                        <ion-icon class="bx" name="battery-full-outline"></ion-icon>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-signal"></i>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-wifi" class="bx"></i>
+                        <a class="text-pin">100%</a>
+                        <ion-icon class="ellipsis" name="ellipsis-horizontal-outline"></ion-icon>
+                        <ion-icon style="color: #fff;" class="bx" name="battery-full-outline"></ion-icon>
                     </div>
                 </div>
                 <div class="container-assistouch">
@@ -404,37 +470,36 @@
                                     <i class="fa-brands fa-facebook-messenger"></i>
                                 </div>
                             </a>
-                            <div class="navBar">
-                                <a class="icon-nav home" href="#">
-                                    <span><ion-icon name="home-outline"></ion-icon></span>
-                                    <span class="title-facebook-nav">Home</span>
-                                </a>
-                                <a class="icon-nav" href="#">
-                                    <span><ion-icon name="people-outline"></ion-icon></span>
-                                    <span class="title-facebook-nav">firend</span>
-                                </a>
-                                <b class="icon-nav" href="#">
-                                    <span id="personal"><ion-icon name="person-circle-outline"></ion-icon></span>
-                                    <span class="title-facebook-nav">personal
-                                        page</span>
-                                </b>
-                                <a class="icon-nav" href="#">
-                                    <span><ion-icon name="tv-outline"></ion-icon></span>
-                                    <span class="title-facebook-nav">video</span>
-                                </a>
-                                <a class="icon-nav" href="#">
-                                    <span><ion-icon name="menu-outline"></ion-icon></span>
-                                    <span class="title-facebook-nav">Menu</span>
-                                </a>
-                            </div>
                         </div>
-
+                        <div class="navBar">
+                            <a class="icon-nav home" href="#">
+                                <span><ion-icon name="home-outline"></ion-icon></span>
+                                <span class="title-facebook-nav">Home</span>
+                            </a>
+                            <a class="icon-nav" href="#">
+                                <span><ion-icon name="people-outline"></ion-icon></span>
+                                <span class="title-facebook-nav">firend</span>
+                            </a>
+                            <a class="icon-nav" href="#">
+                                <span id="personal"><ion-icon name="person-circle-outline"></ion-icon></span>
+                                <span class="title-facebook-nav">personal
+                                    page</span>
+                            </a>
+                            <a class="icon-nav" href="#">
+                                <span><ion-icon name="tv-outline"></ion-icon></span>
+                                <span class="title-facebook-nav">video</span>
+                            </a>
+                            <a class="icon-nav" href="#">
+                                <span><ion-icon name="menu-outline"></ion-icon></span>
+                                <span class="title-facebook-nav">Menu</span>
+                            </a>
+                        </div>
                         <!-- center-facebook -->
                         <div class="container-center-facebook">
                             <div class="content-center-facebook">
                                 <div class="user-search">
                                     <a class="user" href="#">
-                                        <img src="img/user.jpg" alt="">
+                                        <img src="img/user-fb.jpg" alt="">
                                     </a>
                                     <div class="input-search">
                                         <input type="text" placeholder="Bạn đang nghĩ gì?">
@@ -448,7 +513,7 @@
                                         <div class="upload">
                                             <div class="background-createnews">
                                                 <div class="img-createnews">
-                                                    <img src="img/user.jpg" alt="">
+                                                    <img src="img/user-fb.jpg" alt="">
                                                 </div>
                                                 <div class="plus">
                                                     <div class="pluss">
@@ -797,7 +862,7 @@
                         <div class="content-assitouch-menu">
                             <div class="icon-menu">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
-                                <div class="text-icon">
+                                <div class="text-icon" id="power-assitouch">
                                     Khoá <br> màn hình
                                 </div>
                             </div>
@@ -837,22 +902,26 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="container-page">
                 <div class="header header-time-page">
                     <div class="time">
-                        <p style="color: #fff;" id="cur-time"></p>
+                        <div class="back-up-home">
+                            <a style="color: #fff;" href=""><ion-icon name="home-outline"></ion-icon></a>
+                        </div>
+                        <p class="current-time"></p>
                     </div>
                     <div class="container-camera">
                         <div class="camera">
                             <div class="camera-one"></div>
-                            <!-- <div class="camera-two"></div> -->
+
                         </div>
                     </div>
                     <div class="icon-header">
-                        <ion-icon style="font-size: 14px; color: #fff;" name="cellular-outline"></ion-icon>
-                        <ion-icon style="font-size: 16px; color: #fff;" class="bx" name="wifi-outline"></ion-icon>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-signal"></i>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-wifi" class="bx"></i>
+                        <a class="text-pin">100%</a>
+                        <ion-icon class="ellipsis" name="ellipsis-horizontal-outline"></ion-icon>
                         <ion-icon style="color: #fff;" class="bx" name="battery-full-outline"></ion-icon>
                     </div>
                 </div>
@@ -862,7 +931,7 @@
                         <div class="content-assitouch-menu">
                             <div class="icon-menu">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
-                                <div class="text-icon">
+                                <div class="text-icon" id="power-assitouch">
                                     Khoá <br> màn hình
                                 </div>
                             </div>
@@ -919,7 +988,7 @@
                                 <ion-icon class="camera-page" style="color: #000;" name="camera-outline"></ion-icon>
                             </div>
                             <div class="photo-page">
-                                <img src="img/user.jpg" alt="">
+                                <img src="img/user-fb.jpg" alt="">
                                 <h5>tô văn lộc</h5>
                                 <span style="font-size: 11px;">2k7 <span>
                                         bạn bè</span></span>
@@ -1075,11 +1144,41 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="container-game">
+                <div class="header">
+                    <div class="back-up-fil">
+                        <ion-icon name="return-up-back-outline"></ion-icon>
+                    </div>
+                    <div class="time">
+                        <p class="current-time"></p>
+                    </div>
+                    <div class="container-camera">
+                        <div class="camera">
+                            <div class="camera-one"></div>
+
+                        </div>
+                    </div>
+                    <div class="icon-header">
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-signal"></i>
+                        <i style="font-size: 11px; color: #fff;" class="fa-solid fa-wifi" class="bx"></i>
+                        <a class="text-pin">100%</a>
+                        <ion-icon class="ellipsis" name="ellipsis-horizontal-outline"></ion-icon>
+                        <ion-icon style="color: #fff;" class="bx" name="battery-full-outline"></ion-icon>
+                    </div>
+                </div>
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="container-tiktok">
 
             </div>
         </div>
     </div>
+    </div>
+
+
     <script src="main.js"></script>
+    <script src="game.js"></script>
 </body>
 
 </html>

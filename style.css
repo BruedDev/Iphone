@@ -876,7 +876,7 @@ a {
     display: flex;
     position: absolute;
     top: auto;
-    bottom: 18px;
+    bottom: 40px;
     left: 0;
     right: 0;
     padding: 0 20px;
@@ -2147,7 +2147,9 @@ a {
 .photo-page img {
     width: 100%;
     border-radius: 50%;
-    border: 4px solid #0047ab;
+    border: 3px solid #0047ab;
+    padding: 5px;
+    background-color: #000;
 }
 
 .background-camera-photo {
